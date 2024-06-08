@@ -12,7 +12,7 @@ import (
 	"github.com/aandrew-me/tgpt/v2/structs"
 )
 
-func NewRequest(input string, params structs.Params, prevMessages string) (*http.Response, error) {
+func NewRequest(input string, params structs.Params) (*http.Response, error) {
 	client, err := client.NewClient()
 	if err != nil {
 		fmt.Println(err)
@@ -40,9 +40,9 @@ func NewRequest(input string, params structs.Params, prevMessages string) (*http
 	}
 
 	safeInput, _ := json.Marshal(input)
-	finalInput := string(safeInput)[1: len(string(safeInput)) - 1]
+	finalInput := string(safeInput)[1 : len(string(safeInput))-1]
 
-	prompt := fmt.Sprintf(`%v<s>[INST] %v [/INST]`, prevMessages, finalInput)
+	prompt := fmt.Sprintf(`%v<s>[INST] %v [/INST]`, params.PrevMessages, finalInput)
 
 	var data = strings.NewReader(fmt.Sprintf(`
 	{
