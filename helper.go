@@ -83,7 +83,7 @@ func getDataResponseTxt(input string, isInteractive bool, extraOptions structs.E
 		bold.Println()
 	} else {
 		fmt.Println()
-		boldViolet.Println("╭─ Bot")
+		boldViolet.Println("╭─ DAX")
 	}
 
 	// Handling each part
